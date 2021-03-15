@@ -19,4 +19,13 @@ public class ExceptionMapper {
         response.put("data", null);
         return new ResponseEntity<>(response, HttpStatus.NOT_ACCEPTABLE);
     }
+
+
+    @ExceptionHandler(value = InvalidRequestExcetion.class)
+    public ResponseEntity<?> invalidDataBaseException(DatabaseException databaseException) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", databaseException.getMessage());
+        response.put("data", null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_ACCEPTABLE);
+    }
 }
